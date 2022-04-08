@@ -9,7 +9,8 @@ func main() {
 	r := gin.Default()
 
 	// use the auth middleware
-	r.Use(middleware.Auth(r))
+	middleware.InitAuthStore(r)
+	r.Use(middleware.Auth())
 
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(200, gin.H{
